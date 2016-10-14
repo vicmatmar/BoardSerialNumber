@@ -45,9 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BoardSerialData\BoardSerialData\BoardSerialData.csproj">
-      <Project>{78f23225-6c41-413a-959c-d01fb56883cd}</Project>
-      <Name>BoardSerialData</Name>
+    <ProjectReference Include="..\..\CentraliteDataUtils\CentraliteDataUtils\CentralitedataUtils.csproj">
+      <Project>{923234e3-7869-406d-b6c5-dba2eebc8624}</Project>
+      <Name>CentralitedataUtils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

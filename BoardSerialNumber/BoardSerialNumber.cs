@@ -10,7 +10,7 @@ using System.Globalization;
 using System.Net.NetworkInformation;
 using Microsoft.Win32;
 
-using BoardSerialData;
+using CentraliteData;
 
 public class BoardSerialNumber
 {
@@ -46,6 +46,17 @@ public class BoardSerialNumber
         public Week_Year Week_Year { get; set; }
     }
 
+    static string _con_str = CentraliteDataUtils.DataUtils.DBConnStr;
+    static public string DBConnectionStr
+    {
+        get { return _con_str; }
+        set { _con_str = value; }
+    }
+    static public CentraliteDataContext DataContext
+    {
+        get { return new CentraliteDataContext(DBConnectionStr); }
+    }
+
     /// <summary>
     /// Gets the week number based on database current date
     /// </summary>
@@ -55,7 +66,7 @@ public class BoardSerialNumber
         int year = -1;
         int week = -1;
         //using (SqlConnection con = new SqlConnection(ConnectionSB.ConnectionString))
-        using (BoardSerial_DataContext cx = new BoardSerial_DataContext())
+        using (CentraliteDataContext cx = DataContext)
         {
 
             DateTime date = cx.ExecuteQuery<DateTime>("SELECT GETDATE()").First();
