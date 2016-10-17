@@ -10,7 +10,7 @@ using System.Globalization;
 using System.Net.NetworkInformation;
 using Microsoft.Win32;
 
-using CentraliteData;
+using CentraliteDataUtils;
 
 public class BoardSerialNumber
 {

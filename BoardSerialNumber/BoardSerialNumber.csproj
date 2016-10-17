@@ -45,9 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CentraliteDataUtils\CentraliteDataUtils\CentralitedataUtils.csproj">
+    <ProjectReference Include="..\..\CentraliteDataUtils\CentraliteDataUtils\CentraliteDataUtils.csproj">
       <Project>{923234e3-7869-406d-b6c5-dba2eebc8624}</Project>
-      <Name>CentralitedataUtils</Name>
+      <Name>CentraliteDataUtils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

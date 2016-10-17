@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardSerialNumber", "BoardSerialNumber\BoardSerialNumber.csproj", "{2FFFD086-BCCA-4F15-9222-AD4B7A8A6F70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentralitedataUtils", "..\CentraliteDataUtils\CentraliteDataUtils\CentralitedataUtils.csproj", "{923234E3-7869-406D-B6C5-DBA2EEBC8624}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentraliteDataUtils", "..\CentraliteDataUtils\CentraliteDataUtils\CentraliteDataUtils.csproj", "{923234E3-7869-406D-B6C5-DBA2EEBC8624}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
