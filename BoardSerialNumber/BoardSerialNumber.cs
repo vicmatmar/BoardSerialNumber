@@ -37,12 +37,12 @@ public class BoardSerialNumber
         public Serial_Parts()
         {
             Product_ID = 0;
-            Serial_Number = 0;
+            Number = 0;
             Week_Year = new Week_Year();
         }
 
         public int Product_ID { get; set; }
-        public int Serial_Number { get; set; }
+        public int Number { get; set; }
         public Week_Year Week_Year { get; set; }
     }
 
@@ -86,19 +86,64 @@ public class BoardSerialNumber
         return new Week_Year(week, year_2digit);
     }
 
-    public static string BuildSerial(int product_id, int serial_num, int week, int year)
+    public static string BuildSerial(int product_id, int number, int week, int year)
     {
         string week_number = string.Format("{0:D2}{1}", week, year);
 
         string serial_number = string.Format("{0:D3}{1}", product_id, week_number);
-        serial_number += string.Format("{0:D6}", serial_num);
+        serial_number += string.Format("{0:D6}", number);
 
         return serial_number;
     }
 
+    public static string BuildSerial(int product_id)
+    {
+        Week_Year wy = GetWeekYearNumber();
+        int number = GetNextNumber(product_id: product_id, wy: wy);
+        string serial_number = BuildSerial(product_id, number, wy.Week, wy.Year);
+
+        return serial_number;
+    }
+
+    public static string BuildSerial(int product_id, int number, Week_Year wy)
+    {
+        string serial_number = BuildSerial(product_id, number, wy.Week, wy.Year);
+
+        return serial_number;
+    }
+
+    public static int GetNextNumber(int product_id, Week_Year wy)
+    {
+        int number = 0;
+        using (CentraliteDataContext dc = DataContext)
+        {
+            int[] numbers = dc.BoardTrackers
+                .Where(
+                c => c.ProductId == product_id &&
+                c.Week == wy.Week &&
+                c.Year == wy.Year
+                )
+                .OrderByDescending(c => c.Number)
+                .Select(c => c.Number).Take(1).ToArray<int>();
+            if (numbers.Length > 0)
+            {
+                number = numbers[0] + 1;
+            }
+        }
+
+        return number;
+    }
+
+    public static int GetNextNumber(int product_id)
+    {
+        Week_Year wy = GetWeekYearNumber();
+        int number = GetNextNumber(product_id: product_id, wy: wy);
+        return number;
+    }
+
     public static Serial_Parts Parse(string serialnumber)
     {
-        if(serialnumber.Length != 14)
+        if(serialnumber.Length != 13)
         {
             throw new ArgumentException("Incorrect serial number length: " + serialnumber.Length.ToString());
         }
@@ -110,7 +155,7 @@ public class BoardSerialNumber
 
         parts.Week_Year.Year = Convert.ToInt32(serialnumber.Substring(5, 2));
 
-        parts.Serial_Number = Convert.ToInt32(serialnumber.Substring(8));
+        parts.Number = Convert.ToInt32(serialnumber.Substring(8));
 
         return parts;
     }
