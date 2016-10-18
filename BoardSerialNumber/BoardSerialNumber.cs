@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.Data.SqlClient;
 using System.Globalization;
-
-using System.Net.NetworkInformation;
-using Microsoft.Win32;
 
 using CentraliteDataUtils;
 
 public class BoardSerialNumber
 {
+    /// <summary>
+    /// Used to hold week and year info
+    /// </summary>
     public class Week_Year
     {
         public Week_Year()
