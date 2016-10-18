@@ -138,7 +138,7 @@ public class BoardSerialNumber
 
     public static Serial_Parts Parse(string serialnumber)
     {
-        if(serialnumber.Length != 13)
+        if(serialnumber.Length < 13)
         {
             throw new ArgumentException("Incorrect serial number length: " + serialnumber.Length.ToString());
         }
